@@ -1,4 +1,4 @@
-package sample;
+package GetRich;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
