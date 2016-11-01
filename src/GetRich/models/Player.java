@@ -10,10 +10,12 @@ public class Player {
     private ArrayList<Land> land = new ArrayList<>();
     private int lapPassed, rank;
     private boolean bankrupt = false, ready = false;
+    private String avatar;
 
-    Player(String name, long money){
+    public Player(String name, long money, String avatar){
         this.name = name;
         this.money = money;
+        this.avatar = avatar;
     }
 
     public String getName() {
