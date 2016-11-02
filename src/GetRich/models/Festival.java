@@ -3,8 +3,8 @@ package GetRich.models;
 public class Festival extends Area{
     private Land currenFestival = null;
     private long deafultCharge;
-    public Festival(String name, int index) {
-        super(name, index);
+    public Festival() {
+        super("Festival", 18);
         this.setPurchasable(false);
     }
 

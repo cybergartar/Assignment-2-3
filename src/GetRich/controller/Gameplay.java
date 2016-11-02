@@ -2,28 +2,21 @@ package GetRich.controller;
 
 import GetRich.models.Player;
 
+import java.awt.geom.Area;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 public class Gameplay {
     int roundPlay, roundLimit;
     ArrayList <Player> players;
     RankComparator comparator = new RankComparator();
-    List<Player> rank = new ArrayList<Player>() {
-        public boolean add(Player player){
-            super.add(player);
-            Collections.sort(rank, new RankComparator());
-            return true;
-        }
-    };
+    ArrayList <Player> rank;
+    ArrayList <Area> tile;
 
-    public Gameplay(int roundPlay, int roundLimit, ArrayList<Player> players, List<Player> rank) {
-        this.roundPlay = roundPlay;
+    public Gameplay(int roundLimit, ArrayList<Player> players, ArrayList <Area> tile) {
         this.roundLimit = roundLimit;
         this.players = players;
-        this.rank = rank;
+        this.tile = Initializer.createArea();
     }
 
     public static void main(String[] argv){

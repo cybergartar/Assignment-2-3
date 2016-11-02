@@ -2,8 +2,9 @@ package GetRich.models;
 
 public class Plane extends Area{
     public Plane(String name, int index) {
-        super(name, index);
+        super("Plane", 27);
         this.setPurchasable(false);
+        this.setType("Plane");
     }
 
     public void goTo(int index){
