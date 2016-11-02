@@ -7,7 +7,8 @@ public class Island extends Area{
         this.setType("Island");
     }
 
-    public void missTurn(){
-//        TODO: implements miss turn system syncing with Player class
+    @Override
+    public void trigger(Player player) {
+        super.trigger(player);
     }
 }

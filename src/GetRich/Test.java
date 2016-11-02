@@ -1,5 +1,7 @@
 package GetRich;
 
+import GetRich.controller.Gameplay;
+import GetRich.controller.Initializer;
 import GetRich.models.Player;
 
 import java.util.*;
@@ -16,6 +18,8 @@ public class Test {
         players.add(new Player("C", 100000, "fish"));
         players.add(new Player("D", 100000, "dog"));
 
+        Gameplay game = new Gameplay(50, players, Initializer.createArea());
+
         Scanner input = new Scanner(System.in);
         String cmd;
 
@@ -26,29 +30,38 @@ public class Test {
             System.out.println(i.getName());
         }
 
+//        for (Area i : game.getTile()){
+//            System.out.println(i.getName() + " I: " + i.getIndex() + " T: " +i.getType());
+//        }
+
         while (playing) {
-            for (Player i : players){
-                if(!(i.isBankrupt())){
-                    if(i.getTurnLeftOnIsland() > 0){
-                        i.setTurnLeftOnIsland(i.getTurnLeftOnIsland() - 1);
+            for (Player pl : players){
+                if(!(pl.isBankrupt())){
+                    if(pl.getTurnLeftOnIsland() > 0){
+                        pl.setTurnLeftOnIsland(pl.getTurnLeftOnIsland() - 1);
                     }
                     else {
-                        System.out.println("CMD: " + i.getName() + " AT: " + i.getCurrentTile());
+                        System.out.println("CMD: " + pl.getName() + " AT: " + pl.getCurrentTile() + " MONEY : " + pl.getMoney() + " ASSETS : " + pl.getTotalAssets());
                         cmd = input.next();
                         int[] dice = tossDice();
                         System.out.println(Arrays.toString(dice));
-                        i.setCurrentTile(i.getCurrentTile() + dice[0] + dice[1]);
-                        if(i.getCurrentTile() >= 36){
-                            i.increaseLapPassed();
-                            i.setCurrentTile(i.getCurrentTile() % 36);
+                        pl.setCurrentTile(pl.getCurrentTile() + dice[0] + dice[1]);
+                        if(pl.getCurrentTile() >= 36){
+                            pl.increaseLapPassed();
+                            pl.setCurrentTile(pl.getCurrentTile() % 36);
                         }
 
-                        System.out.println("NOW AT: " + i.getCurrentTile() + "LAP: " + i.getLapPassed());
+                        game.getTile().get(pl.getCurrentTile()).trigger(pl);
+
+                        System.out.println("NOW AT: " + pl.getCurrentTile() + " LAP: " + pl.getLapPassed() + " MONEY : " + pl.getMoney() + " ASSETS : " + pl.getTotalAssets());
                         System.out.println();
+
+
                     }
 
-                    if (i.getTotalAssets() == 0)
-                        i.setBankrupt(true);
+                    if (pl.getTotalAssets() <= 0) {
+                        pl.bankrupt();
+                    }
 
                 }
 

@@ -2,9 +2,15 @@ package GetRich.models;
 
 public class Lucky extends Area{
 
-    public Lucky(String name, int index) {
-        super(name, index);
+    public Lucky(int index) {
+        super("Lucky", index);
         this.setPurchasable(false);
+        this.setType("Lucky");
+    }
+
+    @Override
+    public void trigger(Player player) {
+        super.trigger(player);
     }
 
     public void randomLucky(Player player){
@@ -16,10 +22,7 @@ public class Lucky extends Area{
     }
 
     private void bankrupt(Player player){
-        for(Land i : player.getLand()){
-            i.removeOwner();
-        }
-        player.setBankrupt(true);
+
     }
 
 //    TODO: think more lucky method

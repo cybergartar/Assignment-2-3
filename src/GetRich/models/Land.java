@@ -1,10 +1,15 @@
 package GetRich.models;
 
+import java.util.Scanner;
+
 public class Land extends Area{
     private Player owner = null;
     private long buyPrice, sellPrice, charge;
-    private int level;
+    int level;
     private boolean upgradeable, hasLandmark, onFestival;
+
+    Scanner input = new Scanner(System.in);
+    String cmd;
 
     public boolean isUpgradeable() {
         return upgradeable;
@@ -97,8 +102,91 @@ public class Land extends Area{
         this.onFestival = onFestival;
     }
 
-    public void purchase(Player owner){
-        if(this.isPurchasable())
-            this.owner = owner;
+    public void purchase(Player player){
+        if(this.getLevel() == 4 && player.getLapPassed() >= 2 && player.getMoney() >= this.buyPrice) {
+            System.out.println("Set Landmark? : ");
+            cmd = input.next();
+            if(cmd.charAt(0) == 'y'){
+                this.level++;
+                this.hasLandmark = true;
+                this.setPurchasable(false);
+                this.charge += 500;
+                player.payMoney(500);
+                player.setTotalAssets(player.getTotalAssets() + 500);
+            }
+        }
+        if(this.getLevel() == 0 && player.getMoney() >= this.buyPrice){
+            System.out.println("buy 1? : ");
+            cmd = input.next();
+            if(cmd.charAt(0) == 'y'){
+                this.owner = player;
+                this.level++;
+                this.charge += 100;
+                this.buyPrice += 100;
+                player.payMoney(this.buyPrice);
+                player.setTotalAssets(player.getTotalAssets() + this.buyPrice);
+            }
+
+        }
+        if(this.getLevel() == 1 && player.getLapPassed() >= 1 && player.getMoney() >= this.buyPrice) {
+            System.out.println("buy 2? : ");
+            cmd = input.next();
+            if(cmd.charAt(0) == 'y'){
+                this.level++;
+                this.charge += 100;
+                this.buyPrice += 100;
+                player.payMoney(100);
+                player.setTotalAssets(player.getTotalAssets() + 100);
+            }
+        }
+        if(this.getLevel() == 2 && player.getLapPassed() >= 1 && player.getMoney() >= this.buyPrice) {
+            System.out.println("buy 3? : ");
+            cmd = input.next();
+            if(cmd.charAt(0) == 'y'){
+                this.level++;
+                this.charge += 100;
+                this.buyPrice += 100;
+                player.payMoney(100);
+                player.setTotalAssets(player.getTotalAssets() + 100);
+            }
+        }
+    }
+
+    @Override
+    public void trigger(Player player) {
+        super.trigger(player);
+
+        if(this.getOwner() != null && this.getOwner() != player){
+            player.setTotalAssets(player.getMoney() - this.getCharge());
+            this.getOwner().recvMoney(this.getCharge());
+
+            System.out.println(player.getName() + " pay to " + owner.getName() + " amount : " + this.getCharge());
+            if(player.getMoney() >= this.getBuyPrice()){
+                System.out.println("Take over? : ");
+                cmd = input.next();
+                if(cmd.charAt(0) == 'y'){
+                    player.payMoney(this.buyPrice);
+                    owner.recvMoney(this.buyPrice);
+                    owner.setTotalAssets(owner.getTotalAssets() - this.buyPrice);
+                    this.owner = player;
+                    this.owner.setTotalAssets(this.owner.getTotalAssets() + this.buyPrice);
+                }
+            }
+        }
+        else if(this.getOwner() == null && player.getMoney() >= this.buyPrice){
+            System.out.println("Buy Land? : ");
+            cmd = input.next();
+            if(cmd.charAt(0) == 'y'){
+                this.purchase(player);
+                this.buyPrice += 100;
+                this.charge += 100;
+            }
+        }
+
+        if(this.getOwner() == player && this.isPurchasable()){
+            purchase(player);
+        }
+
+
     }
 }

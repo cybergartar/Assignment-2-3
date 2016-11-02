@@ -1,19 +1,19 @@
 package GetRich.controller;
 
+import GetRich.models.Area;
 import GetRich.models.Player;
 
-import java.awt.geom.Area;
 import java.util.ArrayList;
 import java.util.Comparator;
 
 public class Gameplay {
-    int roundPlay, roundLimit;
-    ArrayList <Player> players;
-    RankComparator comparator = new RankComparator();
-    ArrayList <Player> rank;
-    ArrayList <Area> tile;
+    private int roundPlay, roundLimit;
+    private ArrayList <Player> players;
+    private RankComparator comparator = new RankComparator();
+    private ArrayList <Player> rank;
+    private ArrayList <GetRich.models.Area> tile;
 
-    public Gameplay(int roundLimit, ArrayList<Player> players, ArrayList <Area> tile) {
+    public Gameplay(int roundLimit, ArrayList<Player> players, ArrayList <GetRich.models.Area> tile) {
         this.roundLimit = roundLimit;
         this.players = players;
         this.tile = Initializer.createArea();
@@ -21,6 +21,46 @@ public class Gameplay {
 
     public static void main(String[] argv){
 
+    }
+
+    public int getRoundPlay() {
+        return roundPlay;
+    }
+
+    public void setRoundPlay(int roundPlay) {
+        this.roundPlay = roundPlay;
+    }
+
+    public int getRoundLimit() {
+        return roundLimit;
+    }
+
+    public void setRoundLimit(int roundLimit) {
+        this.roundLimit = roundLimit;
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(ArrayList<Player> players) {
+        this.players = players;
+    }
+
+    public ArrayList<Player> getRank() {
+        return rank;
+    }
+
+    public void setRank(ArrayList<Player> rank) {
+        this.rank = rank;
+    }
+
+    public ArrayList<Area> getTile() {
+        return tile;
+    }
+
+    public void setTile(ArrayList<Area> tile) {
+        this.tile = tile;
     }
 }
 

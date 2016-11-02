@@ -7,9 +7,13 @@ public class Beach extends Land{
         this.setType("Beach");
     }
 
-    @Override
     public void purchase(Player owner) {
         super.purchase(owner);
         this.setPurchasable(false);
+    }
+
+    @Override
+    public void trigger(Player player) {
+        super.trigger(player);
     }
 }

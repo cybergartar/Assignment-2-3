@@ -9,4 +9,9 @@ public class Start extends Area {
         this.setPurchasable(false);
         this.setType("Start");
     }
+
+    @Override
+    public void trigger(Player player) {
+        super.trigger(player);
+    }
 }

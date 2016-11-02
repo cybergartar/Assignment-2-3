@@ -121,5 +121,22 @@ public class Player {
     public void setTurnLeftOnIsland(int turnLeftOnIsland) {
         this.turnLeftOnIsland = turnLeftOnIsland;
     }
+
+    public void payMoney(long money){
+        this.money -= money;
+        this.totalAssets -= money;
+    }
+
+    public void recvMoney(long money){
+        this.money += money;
+        this.totalAssets += money;
+    }
+
+    public void bankrupt(){
+        for(Land i : this.getLand()){
+            i.removeOwner();
+        }
+        this.setBankrupt(true);
+    }
 }
 

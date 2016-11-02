@@ -1,4 +1,6 @@
-package GetRich.models;
+package GetRich.controller;
+
+import GetRich.models.Player;
 
 import java.util.Comparator;
 
