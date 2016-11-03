@@ -1,8 +1,9 @@
 package GetRich.models;
 
+import java.util.Scanner;
+
 public class Festival extends Area{
     private Land currenFestival = null;
-    private long deafultCharge;
     public Festival() {
         super("Festival", 18);
         this.setPurchasable(false);
@@ -23,5 +24,16 @@ public class Festival extends Area{
     @Override
     public void trigger(Player player) {
         super.trigger(player);
+        Scanner input = new Scanner(System.in);
+        int cmd = input.nextInt();
+        for (Land i : player.getLand()){
+            if(i.getIndex() == cmd) {
+                if(currenFestival != null)
+                    currenFestival.setOnFestival(false);
+                i.setOnFestival(true);
+                currenFestival = i;
+                break;
+            }
+        }
     }
 }

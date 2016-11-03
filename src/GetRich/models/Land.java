@@ -199,8 +199,14 @@ public class Land extends Area{
         super.trigger(player);
 
         if(this.getOwner() != null && this.getOwner() != player){
-            player.payMoney(this.getRealCharge());
-            this.getOwner().recvMoney(this.getRealCharge());
+            if(this.isOnFestival()){
+                player.payMoney(this.getRealCharge() * 2);
+                this.getOwner().recvMoney(this.getRealCharge() * 2);
+            }
+            else {
+                player.payMoney(this.getRealCharge());
+                this.getOwner().recvMoney(this.getRealCharge());
+            }
 
             System.out.println(player.getName() + " pay to " + owner.getName() + " amount : " + this.getRealCharge());
             if(player.getMoney() >= this.getBuyPrice() && this.isPurchasable()){
@@ -208,8 +214,8 @@ public class Land extends Area{
                 // cmd = input.next();
                 cmd = "y";
                 if(cmd.charAt(0) == 'y'){
-                    owner.removeLand(this);
                     owner.recvMoney(this.buyPrice);
+                    owner.removeLand(this);
                     player.payMoney(this.buyPrice);
 
                     this.owner = player;

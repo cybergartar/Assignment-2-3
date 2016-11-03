@@ -10,5 +10,6 @@ public class Island extends Area{
     @Override
     public void trigger(Player player) {
         super.trigger(player);
+        player.setTurnLeftOnIsland(3);
     }
 }

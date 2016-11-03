@@ -46,14 +46,21 @@ public class Test {
                         pl.setTurnLeftOnIsland(pl.getTurnLeftOnIsland() - 1);
                     }
                     else {
-                        System.out.println("CMD: " + pl.getName() + " AT: " + pl.getCurrentTile() + " MONEY : " + pl.getMoney() + " ASSETS : " + pl.getTotalAssets());
+                        if(!pl.isOnPlane()){
+                            System.out.println("CMD: " + pl.getName() + " AT: " + pl.getCurrentTile() + " MONEY : " + pl.getMoney() + " ASSETS : " + pl.getTotalAssets());
 //                        cmd = input.next();
-                        int[] dice = tossDice();
-                        System.out.println(Arrays.toString(dice));
-                        pl.setCurrentTile(pl.getCurrentTile() + dice[0] + dice[1]);
-                        if(pl.getCurrentTile() >= 36){
-                            pl.increaseLapPassed();
-                            pl.setCurrentTile(pl.getCurrentTile() % 36);
+                            int[] dice = tossDice();
+                            System.out.println(Arrays.toString(dice));
+                            pl.setCurrentTile(pl.getCurrentTile() + dice[0] + dice[1]);
+                            if(pl.getCurrentTile() >= 36){
+                                pl.increaseLapPassed();
+                                pl.setCurrentTile(pl.getCurrentTile() % 36);
+                            }
+                        }
+                        else {
+                            cmd = input.next();
+                            pl.setCurrentTile(Integer.parseInt(cmd));
+                            pl.setOnPlane(false);
                         }
 
                         System.out.print("AREA TYPE: " + game.getTile().get(pl.getCurrentTile()).getType() + " ");

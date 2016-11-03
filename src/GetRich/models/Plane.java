@@ -10,5 +10,6 @@ public class Plane extends Area{
     @Override
     public void trigger(Player player) {
         super.trigger(player);
+        player.setOnPlane(true);
     }
 }
