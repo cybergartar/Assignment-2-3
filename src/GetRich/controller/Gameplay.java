@@ -12,11 +12,13 @@ public class Gameplay {
     private RankComparator comparator = new RankComparator();
     private ArrayList <Player> rank;
     private ArrayList <GetRich.models.Area> tile;
+    private int playerLeft;
 
-    public Gameplay(int roundLimit, ArrayList<Player> players, ArrayList <GetRich.models.Area> tile) {
+    public Gameplay(int roundLimit, ArrayList<Player> players) {
         this.roundLimit = roundLimit;
         this.players = players;
         this.tile = Initializer.createArea();
+        this.playerLeft = 4;
     }
 
     public static void main(String[] argv){
@@ -61,6 +63,14 @@ public class Gameplay {
 
     public void setTile(ArrayList<Area> tile) {
         this.tile = tile;
+    }
+
+    public int getPlayerLeft() {
+        return playerLeft;
+    }
+
+    public void decreasePlayerNum() {
+        this.playerLeft --;
     }
 }
 

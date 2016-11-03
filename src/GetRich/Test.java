@@ -1,7 +1,8 @@
 package GetRich;
 
 import GetRich.controller.Gameplay;
-import GetRich.controller.Initializer;
+import GetRich.models.Beach;
+import GetRich.models.Land;
 import GetRich.models.Player;
 
 import java.util.*;
@@ -13,25 +14,29 @@ public class Test {
     public static void main(String[] argv){
         boolean playing = true;
         ArrayList<Player> players = new ArrayList<>();
-        players.add(new Player("A", 100000, "lion"));
-        players.add(new Player("B", 100000, "cat"));
-        players.add(new Player("C", 100000, "fish"));
-        players.add(new Player("D", 100000, "dog"));
+        players.add(new Player("A", 3000000, "lion"));
+        players.add(new Player("B", 3000000, "cat"));
+        players.add(new Player("C", 3000000, "fish"));
+        players.add(new Player("D", 3000000, "dog"));
 
-        Gameplay game = new Gameplay(50, players, Initializer.createArea());
+        randomOrder(players);
+
+        Gameplay game = new Gameplay(50, players);
 
         Scanner input = new Scanner(System.in);
         String cmd;
 
-        randomOrder(players);
-
-        for (Player i : players){
-            i.setTotalAssets(i.getMoney());
-            System.out.println(i.getName());
-        }
+//        for (Player i : players){
+//            i.setTotalAssets(i.getMoney());
+//            System.out.println(i.getName());
+//        }
 
 //        for (Area i : game.getTile()){
-//            System.out.println(i.getName() + " I: " + i.getIndex() + " T: " +i.getType());
+//            System.out.println("Land: " + i.getName() + " I: " + i.getIndex() + " T: " +i.getType());
+//            if(i instanceof Land){
+//                System.out.println("Buy: " + ((Land) i).getBuyPrice() + " Charge: " + ((Land) i).getBaseCharge());
+//            }
+//            System.out.println("===============================");
 //        }
 
         while (playing) {
@@ -42,7 +47,7 @@ public class Test {
                     }
                     else {
                         System.out.println("CMD: " + pl.getName() + " AT: " + pl.getCurrentTile() + " MONEY : " + pl.getMoney() + " ASSETS : " + pl.getTotalAssets());
-                        cmd = input.next();
+//                        cmd = input.next();
                         int[] dice = tossDice();
                         System.out.println(Arrays.toString(dice));
                         pl.setCurrentTile(pl.getCurrentTile() + dice[0] + dice[1]);
@@ -51,22 +56,67 @@ public class Test {
                             pl.setCurrentTile(pl.getCurrentTile() % 36);
                         }
 
+                        System.out.print("AREA TYPE: " + game.getTile().get(pl.getCurrentTile()).getType() + " ");
+                        System.out.print("INDEX: " + game.getTile().get(pl.getCurrentTile()).getIndex());
+                        System.out.println(" P_ABLE: "+ game.getTile().get(pl.getCurrentTile()).isPurchasable());
+
+                        if (game.getTile().get(pl.getCurrentTile()) instanceof Land){
+                            System.out.print("Level: " + ((Land) game.getTile().get(pl.getCurrentTile())).getLevel());
+                            System.out.println(" BuyPrice: " + ((Land) game.getTile().get(pl.getCurrentTile())).getBuyPrice());
+                            System.out.println("Charge: " + ((Land) game.getTile().get(pl.getCurrentTile())).getRealCharge());
+                        }
+                        else
+                            System.out.println();
+
+                        if(game.getTile().get(pl.getCurrentTile()) instanceof Beach) {
+                            System.out.println("PRE OWNER: " + ((Beach) game.getTile().get(pl.getCurrentTile())).getOwner());
+                            if(((Beach) game.getTile().get(pl.getCurrentTile())).getOwner() != null)
+                                System.out.println("NOW OWNER BANKRUPT?: " + ((Beach) game.getTile().get(pl.getCurrentTile())).getOwner().isBankrupt());
+                        }
+
                         game.getTile().get(pl.getCurrentTile()).trigger(pl);
 
+                        System.out.println("AFTER ACTION");
+                        System.out.print("AREA TYPE: " + game.getTile().get(pl.getCurrentTile()).getType() + " ");
+                        System.out.print("INDEX: " + game.getTile().get(pl.getCurrentTile()).getIndex());
+                        System.out.println(" P_ABLE: "+ game.getTile().get(pl.getCurrentTile()).isPurchasable());
+
+                        if (game.getTile().get(pl.getCurrentTile()) instanceof Land){
+                            System.out.print("Level: " + ((Land) game.getTile().get(pl.getCurrentTile())).getLevel());
+                            System.out.println(" BuyPrice: " + ((Land) game.getTile().get(pl.getCurrentTile())).getBuyPrice());
+                            System.out.println(" Charge: " + ((Land) game.getTile().get(pl.getCurrentTile())).getRealCharge());
+                        }
+                        else
+                            System.out.println();
+
                         System.out.println("NOW AT: " + pl.getCurrentTile() + " LAP: " + pl.getLapPassed() + " MONEY : " + pl.getMoney() + " ASSETS : " + pl.getTotalAssets());
+                        System.out.println("============================================");
                         System.out.println();
 
 
                     }
 
-                    if (pl.getTotalAssets() <= 0) {
+                    if (pl.getTotalAssets() <= 0 || pl.getMoney() <= 0) {
                         pl.bankrupt();
+                        game.decreasePlayerNum();
                     }
 
+                    if (pl.getOrder() == 4)
+                        game.setRoundPlay(game.getRoundPlay() + 1);
+
+                    if(game.getRoundPlay() == game.getRoundLimit() || game.getPlayerLeft() == 1)
+                        playing = false;
                 }
 
             }
         }
+
+        for (Player i : game.getPlayers()){
+            if (i.isBankrupt() == false) {
+                System.out.println("WIN: " + i.getName());
+            }
+        }
+        System.out.println("ROUND PASSED: " + game.getRoundPlay());
     }
 
     private static void randomOrder(ArrayList<Player> players){

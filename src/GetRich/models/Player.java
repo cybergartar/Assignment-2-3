@@ -19,6 +19,7 @@ public class Player {
         this.name = name;
         this.money = money;
         this.avatar = avatar;
+        this.totalAssets = money;
     }
 
     public String getName() {
@@ -135,6 +136,16 @@ public class Player {
     public void bankrupt(){
         for(Land i : this.getLand()){
             i.removeOwner();
+            i.setLevel(-1);
+            if(i instanceof Beach){
+                System.out.println("REMOVE BEACH LVL: " + i.getLevel());
+            }
+            i.setBuyPrice(Variable.calculatedLandPrice(i.getIndex(), 0));
+            i.setBaseCharge(0);
+            i.setRealCharge(0);
+            i.setPurchasable(true);
+            if(!(i instanceof Beach))
+                i.setLandmarkStatus(false);
         }
         this.setBankrupt(true);
     }

@@ -1,7 +1,7 @@
 package GetRich.models;
 
 public class Variable {
-    public static double[][] landPrice = new double[][]{
+    private static double[][] landPrice = new double[][]{
             {0},
             {20, 10, 30, 50, 50},
             {26, 10, 30, 50, 50},
@@ -38,5 +38,10 @@ public class Variable {
             {200, 80, 240, 400, 400},
             {0},
             {210, 80, 240, 400, 400}};
+
+    public static long calculatedLandPrice(int index, int level) {
+        return ((long) landPrice[index][level]) * 1000;
+    }
+    public static final double chargeMultipiler = 1.2;
 
 }

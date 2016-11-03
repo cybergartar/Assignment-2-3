@@ -11,12 +11,12 @@ public class Festival extends Area{
 //    public void trigger(Land target){
 //        if(currenFestival != null){
 //            currenFestival.setOnFestival(false);
-//            currenFestival.setCharge(deafultCharge);
+//            currenFestival.setBaseCharge(deafultCharge);
 //        }
 //
 //        currenFestival = target;
-//        deafultCharge = target.getCharge();
-//        target.setCharge(deafultCharge*2);
+//        deafultCharge = target.getBaseCharge();
+//        target.setBaseCharge(deafultCharge*2);
 //        target.setOnFestival(true);
 //    }
 

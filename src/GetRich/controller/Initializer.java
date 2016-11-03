@@ -4,9 +4,6 @@ import GetRich.models.*;
 
 import java.util.*;
 
-/**
- * Created by ultimate on 10/19/16.
- */
 public class Initializer {
     public static void createPlayer(ArrayList<Player> players, String name, long startMoney, String avatar){
         players.add(new Player(name, startMoney, avatar));
@@ -17,7 +14,7 @@ public class Initializer {
         ArrayList<Area> tile = new ArrayList<>();
         tile.add(new Start());
         for(int i = 1; i <= 35; i++){
-           tile.add(new Land(Character.toString((char)(i+64)), i, 1000*i, 500*i, 1100*i));
+           tile.add(new Land(Character.toString((char)(i+64)), i, Variable.calculatedLandPrice(i, 0), Variable.calculatedLandPrice(i, 0)));
         }
 
         List<Integer> removeList = Arrays.asList(3, 4, 7, 9, 10, 11, 15, 18, 21, 23, 27, 30, 31, 34);
@@ -35,7 +32,7 @@ public class Initializer {
         }
 
         for (Integer i : beachList){
-            tile.add(new Beach("BBBBB", i, 1000, 500, 700));
+            tile.add(new Beach("BBBBB", i, 74500, 80000));
         }
 
         tile.add(new Island());

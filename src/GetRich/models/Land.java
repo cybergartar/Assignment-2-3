@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Land extends Area{
     private Player owner = null;
-    private long buyPrice, sellPrice, charge;
-    int level;
+    private long buyPrice, sellPrice, baseCharge, realCharge;
+    private int level;
     private boolean upgradeable, hasLandmark, onFestival;
 
     Scanner input = new Scanner(System.in);
@@ -20,7 +20,7 @@ public class Land extends Area{
         this.upgradeable = upgradeable;
     }
 
-    public Land(String name, int index, long buyPrice, long sellPrice, long charge){
+    public Land(String name, int index, long buyPrice, long baseCharge){
         super(name, index);
         this.setPurchasable(true);
         this.upgradeable = true;
@@ -28,9 +28,8 @@ public class Land extends Area{
         this.onFestival = false;
 
         this.buyPrice = buyPrice;
-        this.sellPrice = sellPrice;
-        this.level = 0;
-        this.charge = charge;
+        this.level = -1;
+        this.baseCharge = baseCharge;
         this.setType("Land");
     }
 
@@ -63,22 +62,20 @@ public class Land extends Area{
         this.sellPrice = sellPrice;
     }
 
-    public long getCharge() {
-        return charge;
+    public long getBaseCharge() {
+        return baseCharge;
     }
 
-    public void setCharge(long charge) {
-        this.charge = charge;
+    public void setBaseCharge(long baseCharge) {
+        this.baseCharge = baseCharge;
     }
 
     public int getLevel() {
         return level;
     }
 
-    private void setLevel(int level) {
-        if(this.upgradeable)
+    public void setLevel(int level) {
             this.level = level;
-
     }
 
     public boolean hasLandmark() {
@@ -94,6 +91,10 @@ public class Land extends Area{
         }
     }
 
+    public void setLandmarkStatus (boolean has) {
+        hasLandmark = has;
+    }
+
     public boolean isOnFestival() {
         return onFestival;
     }
@@ -102,52 +103,93 @@ public class Land extends Area{
         this.onFestival = onFestival;
     }
 
+    public long getRealCharge() {
+        return realCharge;
+    }
+
+    public void setRealCharge(long realCharge) {
+        this.realCharge = realCharge;
+    }
+
+
+
     public void purchase(Player player){
-        if(this.getLevel() == 4 && player.getLapPassed() >= 2 && player.getMoney() >= this.buyPrice) {
+        if(this.getLevel() == 3 && player.getLapPassed() >= 2 && player.getMoney() >= this.buyPrice) {
             System.out.println("Set Landmark? : ");
-            cmd = input.next();
+            // cmd = input.next();
+            cmd = "y";
             if(cmd.charAt(0) == 'y'){
+                player.payMoney(Variable.calculatedLandPrice(this.getIndex(), 4));
+                this.buyPrice += (2 * Variable.calculatedLandPrice(this.getIndex(), 4));
+                this.baseCharge += Variable.calculatedLandPrice(this.getIndex(), 4);
+                this.realCharge = ((long) (this.baseCharge * Variable.chargeMultipiler));
+                player.setTotalAssets(player.getTotalAssets() + realCharge);
                 this.level++;
-                this.hasLandmark = true;
+
                 this.setPurchasable(false);
-                this.charge += 500;
-                player.payMoney(500);
-                player.setTotalAssets(player.getTotalAssets() + 500);
             }
         }
+
+        if (this.getLevel() == -1 && player.getMoney() >= this.buyPrice) {
+            System.out.println("buy land? : ");
+            // // cmd = input.next();
+            cmd = "y";
+            if (cmd.charAt(0) == 'y') {
+                this.owner = player;
+                player.addLand(this);
+                player.payMoney(Variable.calculatedLandPrice(this.getIndex(), 0));
+
+                this.level++;
+
+                if(this.getType().equals("Beach"))
+                    this.level = 4;
+                
+                this.buyPrice *= 2;
+                this.realCharge = ((long) (baseCharge * Variable.chargeMultipiler));
+                player.setTotalAssets(player.getTotalAssets() + realCharge);
+            }
+        }
+
         if(this.getLevel() == 0 && player.getMoney() >= this.buyPrice){
             System.out.println("buy 1? : ");
-            cmd = input.next();
+            // cmd = input.next();
+            cmd = "y";
             if(cmd.charAt(0) == 'y'){
-                this.owner = player;
+                player.payMoney(Variable.calculatedLandPrice(this.getIndex(), 1));
+                this.buyPrice += (2 * Variable.calculatedLandPrice(this.getIndex(), 1));
+                this.baseCharge += Variable.calculatedLandPrice(this.getIndex(), 1);
+                this.realCharge = ((long) (this.baseCharge * Variable.chargeMultipiler));
                 this.level++;
-                this.charge += 100;
-                this.buyPrice += 100;
-                player.payMoney(this.buyPrice);
-                player.setTotalAssets(player.getTotalAssets() + this.buyPrice);
+
+                player.setTotalAssets(player.getTotalAssets() + realCharge);
             }
 
         }
-        if(this.getLevel() == 1 && player.getLapPassed() >= 1 && player.getMoney() >= this.buyPrice) {
+
+        if(this.getLevel() == 1 && player.getMoney() >= this.buyPrice) {
             System.out.println("buy 2? : ");
-            cmd = input.next();
+            // cmd = input.next();
+            cmd = "y";
             if(cmd.charAt(0) == 'y'){
+                player.payMoney(Variable.calculatedLandPrice(this.getIndex(), 2));
+                this.buyPrice += (2 * Variable.calculatedLandPrice(this.getIndex(), 2));
+                this.baseCharge += Variable.calculatedLandPrice(this.getIndex(), 2);
+                this.realCharge = ((long) (this.baseCharge * Variable.chargeMultipiler));
                 this.level++;
-                this.charge += 100;
-                this.buyPrice += 100;
-                player.payMoney(100);
-                player.setTotalAssets(player.getTotalAssets() + 100);
+                player.setTotalAssets(player.getTotalAssets() + realCharge);
             }
         }
         if(this.getLevel() == 2 && player.getLapPassed() >= 1 && player.getMoney() >= this.buyPrice) {
             System.out.println("buy 3? : ");
-            cmd = input.next();
+            // cmd = input.next();
+            cmd = "y";
             if(cmd.charAt(0) == 'y'){
+                player.payMoney(Variable.calculatedLandPrice(this.getIndex(), 3));
+                this.buyPrice += (2 * Variable.calculatedLandPrice(this.getIndex(), 3));
+                this.baseCharge += Variable.calculatedLandPrice(this.getIndex(), 3);
+                this.realCharge = ((long) (this.baseCharge * Variable.chargeMultipiler));
                 this.level++;
-                this.charge += 100;
-                this.buyPrice += 100;
-                player.payMoney(100);
-                player.setTotalAssets(player.getTotalAssets() + 100);
+                player.setTotalAssets(player.getTotalAssets() + realCharge);
             }
         }
     }
@@ -157,33 +199,31 @@ public class Land extends Area{
         super.trigger(player);
 
         if(this.getOwner() != null && this.getOwner() != player){
-            player.setTotalAssets(player.getMoney() - this.getCharge());
-            this.getOwner().recvMoney(this.getCharge());
+            player.payMoney(this.getRealCharge());
+            this.getOwner().recvMoney(this.getRealCharge());
 
-            System.out.println(player.getName() + " pay to " + owner.getName() + " amount : " + this.getCharge());
-            if(player.getMoney() >= this.getBuyPrice()){
+            System.out.println(player.getName() + " pay to " + owner.getName() + " amount : " + this.getRealCharge());
+            if(player.getMoney() >= this.getBuyPrice() && this.isPurchasable()){
                 System.out.println("Take over? : ");
-                cmd = input.next();
+                // cmd = input.next();
+                cmd = "y";
                 if(cmd.charAt(0) == 'y'){
-                    player.payMoney(this.buyPrice);
+                    owner.removeLand(this);
                     owner.recvMoney(this.buyPrice);
-                    owner.setTotalAssets(owner.getTotalAssets() - this.buyPrice);
+                    player.payMoney(this.buyPrice);
+
                     this.owner = player;
-                    this.owner.setTotalAssets(this.owner.getTotalAssets() + this.buyPrice);
+                    owner.addLand(this);
                 }
             }
         }
-        else if(this.getOwner() == null && player.getMoney() >= this.buyPrice){
-            System.out.println("Buy Land? : ");
-            cmd = input.next();
-            if(cmd.charAt(0) == 'y'){
-                this.purchase(player);
-                this.buyPrice += 100;
-                this.charge += 100;
-            }
+        else if(this.getOwner() == null && player.getMoney() >= this.buyPrice && this.isPurchasable()){
+            System.out.println("PUR NULL OWNER");
+            purchase(player);
         }
 
         if(this.getOwner() == player && this.isPurchasable()){
+            System.out.println("PUR OWN");
             purchase(player);
         }
 
