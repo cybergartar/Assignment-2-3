@@ -208,6 +208,8 @@ public class Land extends Area{
                 this.getOwner().recvMoney(this.getRealCharge());
             }
 
+            //TODO: HANDLE WHEN MONEY IS NOT ENOUGH
+
             System.out.println(player.getName() + " pay to " + owner.getName() + " amount : " + this.getRealCharge());
             if(player.getMoney() >= this.getBuyPrice() && this.isPurchasable()){
                 System.out.println("Take over? : ");
