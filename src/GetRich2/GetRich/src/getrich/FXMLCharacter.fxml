@@ -22,7 +22,10 @@
                <children>
                   <VBox prefHeight="250.0" prefWidth="71.0">
                      <children>
-                        <ImageView fx:id="picPlayer1" fitHeight="230.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="picPlayer1" fitHeight="230.0" fitWidth="300.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@assets/images/AVT/avt_dog1.png" />
+                           </image></ImageView>
                         <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="PLAYER 1" textAlignment="CENTER">
@@ -45,7 +48,10 @@
                   <Pane prefHeight="250.0" prefWidth="780.0" />
                   <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ImageView fx:id="picPlayer2" fitHeight="230.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="picPlayer2" fitHeight="230.0" fitWidth="300.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@assets/images/AVT/avt_ladybug1.png" />
+                           </image></ImageView>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <ToggleButton fx:id="readyButton2" mnemonicParsing="false" onAction="#player2Ready" text="Ready" />
@@ -84,7 +90,10 @@
                               <ToggleButton fx:id="readyButton5" mnemonicParsing="false" onAction="#player3Ready" text="Ready" />
                            </children>
                         </HBox>
-                        <ImageView fx:id="picPlayer3" fitHeight="230.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="picPlayer3" fitHeight="230.0" fitWidth="300.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@assets/images/AVT/avt_pig1.png" />
+                           </image></ImageView>
                      </children>
                   </VBox>
                   <Pane prefHeight="250.0" prefWidth="780.0" />
@@ -104,7 +113,10 @@
                               </Label>
                            </children>
                         </HBox>
-                        <ImageView fx:id="picPlayer4" fitHeight="230.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="picPlayer4" fitHeight="230.0" fitWidth="300.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@assets/images/AVT/avt_cat3.png" />
+                           </image></ImageView>
                      </children>
                   </VBox>
                </children>
