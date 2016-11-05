@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="getrich.FXMLCharacterController">
+   <children>
+      <ImageView fitHeight="742.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/images/S_play.png" />
+         </image>
+      </ImageView>
+      <BorderPane layoutX="82.0" layoutY="45.0" prefHeight="720.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox prefHeight="250.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox prefHeight="250.0" prefWidth="71.0">
+                     <children>
+                        <ImageView fx:id="picPlayer1" fitHeight="230.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+                        <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="PLAYER 1" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets right="15.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="namePlayer1" alignment="CENTER_RIGHT" promptText="Yourname" />
+                              <ToggleButton fx:id="readyButton1" mnemonicParsing="false" onAction="#player1Ready" text="Ready" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Pane prefHeight="250.0" prefWidth="780.0" />
+                  <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fx:id="picPlayer2" fitHeight="230.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <ToggleButton fx:id="readyButton2" mnemonicParsing="false" onAction="#player2Ready" text="Ready" />
+                              <TextField fx:id="namePlayer2" promptText="Yourname" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" text="PLAYER 2" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="15.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </top>
+         <bottom>
+            <HBox prefHeight="250.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" text="PLAYER 3" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets right="15.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="namePlayer3" alignment="CENTER_RIGHT" promptText="Yourname" />
+                              <ToggleButton fx:id="readyButton5" mnemonicParsing="false" onAction="#player3Ready" text="Ready" />
+                           </children>
+                        </HBox>
+                        <ImageView fx:id="picPlayer3" fitHeight="230.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+                  <Pane prefHeight="250.0" prefWidth="780.0" />
+                  <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <ToggleButton fx:id="readyButton4" mnemonicParsing="false" onAction="#player4Ready" text="Ready" />
+                              <TextField fx:id="namePlayer4" promptText="Yourname" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" text="PLAYER 4" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="15.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <ImageView fx:id="picPlayer4" fitHeight="230.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </bottom>
+         <center>
+            <ImageView fx:id="letgo" fitHeight="201.0" fitWidth="244.0" onMouseClicked="#handleLetGoButton" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@assets/images/BT_letsgo.png" />
+               </image>
+            </ImageView>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

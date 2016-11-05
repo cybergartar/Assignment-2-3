@@ -10,3 +10,6 @@
 hs_err_pid*
 out/
 .idea/
+/src/GetRich2/GetRich/nbproject/private/
+/src/GetRich2/GetRich/build/
+/src/GetRich2/GetRich/dist/
