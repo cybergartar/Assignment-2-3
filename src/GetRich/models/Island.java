@@ -1,13 +1,15 @@
 package GetRich.models;
 
 public class Island extends Area{
-    public Island(String name, int index) {
-        super(name, index);
+    public Island() {
+        super("Island", 9);
         this.setPurchasable(false);
         this.setType("Island");
     }
 
-    public void missTurn(){
-//        TODO: implements miss turn system syncing with Player class
+    @Override
+    public void trigger(Player player) {
+        super.trigger(player);
+        player.setTurnLeftOnIsland(3);
     }
 }

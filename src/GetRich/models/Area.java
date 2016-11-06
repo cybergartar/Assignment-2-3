@@ -1,6 +1,6 @@
 package GetRich.models;
 
-class Area {
+public abstract class Area {
     private String name, type;
     private int index;
     private boolean purchasable;
@@ -37,4 +37,6 @@ class Area {
     public void setPurchasable(boolean purchasable) {
         this.purchasable = purchasable;
     }
+
+    public void trigger(Player player){};
 }

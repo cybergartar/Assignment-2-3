@@ -10,10 +10,17 @@ public class Player {
     private ArrayList<Land> land = new ArrayList<>();
     private int lapPassed, rank;
     private boolean bankrupt = false, ready = false;
+    private String avatar;
+    private int order;
+    private int currentTile;
+    private int turnLeftOnIsland;
+    private boolean onPlane = false;
 
-    Player(String name, long money){
+    public Player(String name, long money, String avatar){
         this.name = name;
         this.money = money;
+        this.avatar = avatar;
+        this.totalAssets = money;
     }
 
     public String getName() {
@@ -56,10 +63,10 @@ public class Player {
         this.land.add(land);
     }
 
-    public void removeLand(Land land) {
-        if(this.land.contains(land))
-            this.land.remove(land);
-    }
+//    public void removeLand(Land land) {
+//        if(this.land.contains(land))
+//            this.land.remove(land);
+//    }
 
     public int getLapPassed() {
         return lapPassed;
@@ -89,7 +96,71 @@ public class Player {
         return ready;
     }
 
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
+    }
+
     public void setReady(boolean ready) {
         this.ready = ready;
     }
+
+    public int getCurrentTile() {
+        return currentTile;
+    }
+
+    public void setCurrentTile(int currentTile) {
+        this.currentTile = currentTile;
+    }
+
+    public int getTurnLeftOnIsland() {
+        return turnLeftOnIsland;
+    }
+
+    public void setTurnLeftOnIsland(int turnLeftOnIsland) {
+        this.turnLeftOnIsland = turnLeftOnIsland;
+    }
+
+    public boolean isOnPlane() {
+        return onPlane;
+    }
+
+    public void setOnPlane(boolean onPlane) {
+        this.onPlane = onPlane;
+    }
+
+    public void payMoney(long money){
+        this.money -= money;
+        this.totalAssets -= money;
+    }
+
+    public void recvMoney(long money){
+        this.money += money;
+        this.totalAssets += money;
+    }
+
+    public void bankrupt(){
+        for(Land i : this.getLand()){
+            removeLand(i);
+        }
+        this.setBankrupt(true);
+    }
+
+    public void removeLand(Land i){
+        i.removeOwner();
+        i.setLevel(-1);
+        if(i instanceof Beach){
+            System.out.println("REMOVE BEACH LVL: " + i.getLevel());
+        }
+        i.setBuyPrice(Variable.calculatedLandPrice(i.getIndex(), 0));
+        i.setBaseCharge(0);
+        i.setRealCharge(0);
+        i.setPurchasable(true);
+        if(!(i instanceof Beach))
+            i.setLandmarkStatus(false);
+    }
 }
+

@@ -1,12 +1,15 @@
 package GetRich.models;
 
 public class Plane extends Area{
-    public Plane(String name, int index) {
-        super(name, index);
+    public Plane() {
+        super("Plane", 27);
         this.setPurchasable(false);
+        this.setType("Plane");
     }
 
-    public void goTo(int index){
-//        TODO: implements goTo method syncing with Player class
+    @Override
+    public void trigger(Player player) {
+        super.trigger(player);
+        player.setOnPlane(true);
     }
 }
