@@ -91,7 +91,12 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </HBox>
-                  <Label text="Sum Price: x,xxx">
+                  <Label text="Charge: x,xxx">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="216.0" layoutY="214.0" text="Sum Price: x,xxx">
                      <font>
                         <Font size="20.0" />
                      </font>
