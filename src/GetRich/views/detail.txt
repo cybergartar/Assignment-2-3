@@ -1,0 +1,6 @@
+1. Start Page :: หน้าแรกเกมส์
+2. Select Character :: เลือกตัวละคร
+3. GamePlay :: หน้าเล่นเกมทอยเต๋า
+	3.1 WinGame :: มีคนชนะ
+	3.2 DrawGame :: เสมอ
+4.Deal_Form :: Popup ตอนจะซื้อบ้าน
