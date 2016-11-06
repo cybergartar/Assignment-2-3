@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GetRich.controller.SelectCharacterController">
    <children>
       <ImageView fitHeight="742.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -22,10 +28,20 @@
                <children>
                   <VBox prefHeight="250.0" prefWidth="71.0">
                      <children>
-                        <ImageView fitHeight="230.0" fitWidth="340.0" pickOnBounds="true">
-                           <image>
-                              <Image url="@../assets/images/AVT/avt_dog1.png" />
-                           </image></ImageView>
+                        <StackPane prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fitHeight="230.0" fitWidth="270.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/images/BG/bg_0.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="230.0" fitWidth="340.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../assets/images/AVT/avt_0.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
                         <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="PLAYER 1" textAlignment="CENTER">
@@ -39,8 +55,8 @@
                                     <Insets right="15.0" />
                                  </padding>
                               </Label>
-                              <TextField alignment="CENTER_RIGHT" promptText="Yourname" />
-                              <ToggleButton mnemonicParsing="false" style="-fx-background-color: #FFBD33;" text="Ready" textAlignment="CENTER" />
+                              <TextField fx:id="nameP1" alignment="CENTER_RIGHT" promptText="Yourname" />
+                              <ToggleButton fx:id="btnReadyP1" mnemonicParsing="false" onAction="#handleReadyButton" style="-fx-background-color: #FFBD33;" text="Ready" textAlignment="CENTER" />
                            </children>
                         </HBox>
                      </children>
@@ -48,14 +64,23 @@
                   <Pane prefHeight="250.0" prefWidth="600.0" />
                   <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ImageView fitHeight="230.0" fitWidth="340.0" pickOnBounds="true">
-                           <image>
-                              <Image url="@../assets/images/AVT/avt_ladybug1.png" />
-                           </image></ImageView>
+                        <StackPane prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fitHeight="230.0" fitWidth="270.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/images/BG/bg_1.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="230.0" fitWidth="340.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../assets/images/AVT/avt_1.png" />
+                                 </image>
+                              </ImageView>
+                           </children></StackPane>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <ToggleButton mnemonicParsing="false" style="-fx-background-color: FFBD33;" text="Ready" />
-                              <TextField promptText="Yourname" />
+                              <ToggleButton fx:id="btnReadyP2" mnemonicParsing="false" onAction="#handleReadyButton" style="-fx-background-color: FFBD33;" text="Ready" />
+                              <TextField fx:id="nameP2" promptText="Yourname" />
                               <Label alignment="CENTER" contentDisplay="CENTER" text="PLAYER 2" textAlignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
@@ -92,14 +117,24 @@
                                     <Insets right="15.0" />
                                  </padding>
                               </Label>
-                              <TextField alignment="CENTER_RIGHT" promptText="Yourname" />
-                              <ToggleButton mnemonicParsing="false" onAction="#player3Ready" style="-fx-background-color: FFBD33;" text="Ready" />
+                              <TextField fx:id="nameP3" alignment="CENTER_RIGHT" promptText="Yourname" />
+                              <ToggleButton fx:id="btnReadyP3" mnemonicParsing="false" onAction="#handleReadyButton" style="-fx-background-color: FFBD33;" text="Ready" />
                            </children>
                         </HBox>
-                        <ImageView fitHeight="230.0" fitWidth="340.0" pickOnBounds="true">
-                           <image>
-                              <Image url="@../assets/images/AVT/avt_pig1.png" />
-                           </image></ImageView>
+                        <StackPane prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fitHeight="230.0" fitWidth="270.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/images/BG/bg_2.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="230.0" fitWidth="340.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../assets/images/AVT/avt_2.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
                      </children>
                   </VBox>
                   <Pane prefHeight="250.0" prefWidth="600.0" />
@@ -107,8 +142,8 @@
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <ToggleButton mnemonicParsing="false" style="-fx-background-color: FFBD33;" text="Ready" />
-                              <TextField promptText="Yourname" />
+                              <ToggleButton fx:id="btnReadyP4" mnemonicParsing="false" onAction="#handleReadyButton" style="-fx-background-color: FFBD33;" text="Ready" />
+                              <TextField fx:id="nameP4" promptText="Yourname" />
                               <Label alignment="CENTER" contentDisplay="CENTER" text="PLAYER 4" textAlignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
@@ -119,10 +154,19 @@
                               </Label>
                            </children>
                         </HBox>
-                        <ImageView fitHeight="230.0" fitWidth="340.0" pickOnBounds="true">
-                           <image>
-                              <Image url="@../assets/images/AVT/avt_cat3.png" />
-                           </image></ImageView>
+                        <StackPane prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fitHeight="230.0" fitWidth="270.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/images/BG/bg_3.png" />
+                                 </image></ImageView>
+                              <ImageView fitHeight="230.0" fitWidth="340.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../assets/images/AVT/avt_3.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </StackPane>
                      </children>
                   </VBox>
                </children>
@@ -132,11 +176,19 @@
             </HBox>
          </bottom>
          <center>
-            <ImageView fitHeight="167.0" fitWidth="203.0" onMouseClicked="#handleLetGoButton" pickOnBounds="true" BorderPane.alignment="CENTER">
-               <image>
-                  <Image url="@../assets/images/BT_letsgo.png" />
-               </image>
-            </ImageView>
+            <Button fx:id="btnGo" contentDisplay="RIGHT" layoutX="492.0" layoutY="399.0" mnemonicParsing="false" onAction="#handleGoButton" style="-fx-base: transparent;">
+               <graphic>
+                  <HBox alignment="CENTER" mouseTransparent="true">
+                     <children>
+                        <ImageView fitHeight="167.0" fitWidth="185.0">
+                           <image>
+                              <Image url="@../assets/images/BT_letsgo.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </graphic>
+            </Button>
          </center>
       </BorderPane>
    </children>

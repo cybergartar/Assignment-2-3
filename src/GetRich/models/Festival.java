@@ -5,8 +5,9 @@ import java.util.Scanner;
 public class Festival extends Area{
     private Land currenFestival = null;
     public Festival() {
-        super("Festival", 18);
+        super("Festival", 16);
         this.setPurchasable(false);
+        this.setType("Festival");
     }
 
 //    public void trigger(Land target){

@@ -4,6 +4,7 @@ import GetRich.models.Area;
 import GetRich.models.Player;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 
 public class Gameplay {
@@ -19,6 +20,10 @@ public class Gameplay {
         this.players = players;
         this.tile = Initializer.createArea();
         this.playerLeft = 4;
+        randomOrder(players);
+        for (Player i : players) {
+            i.setRank(i.getOrder());
+        }
     }
 
     public static void main(String[] argv){
@@ -71,6 +76,23 @@ public class Gameplay {
 
     public void decreasePlayerNum() {
         this.playerLeft --;
+    }
+
+    private static void randomOrder(ArrayList<Player> players){
+        ArrayList<Integer> randOrder = new ArrayList<>();
+        randOrder.add(1);
+        randOrder.add(2);
+        randOrder.add(3);
+        randOrder.add(4);
+
+        for(Player i : players){
+            int rand = (int)(Math.random()*randOrder.size());
+            i.setOrder(randOrder.get(rand));
+            randOrder.remove(rand);
+        }
+
+        Collections.sort(players, new OrderComparator());
+
     }
 }
 

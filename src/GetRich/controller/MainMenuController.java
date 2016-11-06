@@ -1,4 +1,4 @@
-package GetRich;
+package GetRich.controller;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -21,8 +21,7 @@ public class MainMenuController {
 
             if(event.getSource() == btnStart){
                 stage = (Stage) btnStart.getScene().getWindow();
-                root = FXMLLoader.load(getClass().getResource("views/SelectCharacter.fxml"));
-                System.out.println("pass");
+                root = FXMLLoader.load(getClass().getResource("../views/SelectCharacter.fxml"));
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.setTitle("GetRich");

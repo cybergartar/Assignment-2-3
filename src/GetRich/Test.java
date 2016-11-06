@@ -14,12 +14,8 @@ public class Test {
     public static void main(String[] argv){
         boolean playing = true;
         ArrayList<Player> players = new ArrayList<>();
-        players.add(new Player("A", 3000000, "lion"));
-        players.add(new Player("B", 3000000, "cat"));
-        players.add(new Player("C", 3000000, "fish"));
-        players.add(new Player("D", 3000000, "dog"));
 
-        randomOrder(players);
+//        randomOrder(players);
 
         Gameplay game = new Gameplay(50, players);
 
@@ -126,22 +122,22 @@ public class Test {
         System.out.println("ROUND PASSED: " + game.getRoundPlay());
     }
 
-    private static void randomOrder(ArrayList<Player> players){
-        ArrayList<Integer> randOrder = new ArrayList<>();
-        randOrder.add(1);
-        randOrder.add(2);
-        randOrder.add(3);
-        randOrder.add(4);
-
-        for(Player i : players){
-            int rand = (int)(Math.random()*randOrder.size());
-            i.setOrder(randOrder.get(rand));
-            randOrder.remove(rand);
-        }
-
-        Collections.sort(players, new OrderComparator());
-
-    }
+//    private static void randomOrder(ArrayList<Player> players){
+//        ArrayList<Integer> randOrder = new ArrayList<>();
+//        randOrder.add(1);
+//        randOrder.add(2);
+//        randOrder.add(3);
+//        randOrder.add(4);
+//
+//        for(Player i : players){
+//            int rand = (int)(Math.random()*randOrder.size());
+//            i.setOrder(randOrder.get(rand));
+//            randOrder.remove(rand);
+//        }
+//
+//        Collections.sort(players, new OrderComparator());
+//
+//    }
 
     public static int[] tossDice(){
         int x = (int)(Math.random()*6)+1;
@@ -151,12 +147,12 @@ public class Test {
     }
 }
 
-class OrderComparator implements Comparator<Player> {
-    @Override
-    public int compare(Player o1, Player o2) {
-        if(o1.getOrder() < o2.getOrder())
-            return -1;
-        else
-            return 1;
-    }
-}
+//class OrderComparator implements Comparator<Player> {
+//    @Override
+//    public int compare(Player o1, Player o2) {
+//        if(o1.getOrder() < o2.getOrder())
+//            return -1;
+//        else
+//            return 1;
+//    }
+//}

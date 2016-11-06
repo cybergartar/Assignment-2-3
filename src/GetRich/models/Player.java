@@ -10,17 +10,25 @@ public class Player {
     private ArrayList<Land> land = new ArrayList<>();
     private int lapPassed, rank;
     private boolean bankrupt = false, ready = false;
-    private String avatar;
     private int order;
     private int currentTile;
     private int turnLeftOnIsland;
     private boolean onPlane = false;
+    private int index;
 
-    public Player(String name, long money, String avatar){
+    public Player(String name, long money, int index){
         this.name = name;
         this.money = money;
-        this.avatar = avatar;
         this.totalAssets = money;
+        this.index = index;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     public String getName() {
@@ -62,11 +70,6 @@ public class Player {
     public void addLand(Land land){
         this.land.add(land);
     }
-
-//    public void removeLand(Land land) {
-//        if(this.land.contains(land))
-//            this.land.remove(land);
-//    }
 
     public int getLapPassed() {
         return lapPassed;

@@ -2,7 +2,7 @@ package GetRich.models;
 
 public class Island extends Area{
     public Island() {
-        super("Island", 9);
+        super("Island", 8);
         this.setPurchasable(false);
         this.setType("Island");
     }
