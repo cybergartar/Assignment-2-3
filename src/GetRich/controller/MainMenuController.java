@@ -1,4 +1,4 @@
-package GetRich.controller;
+package GetRich;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -9,8 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class MainMenuController {
     @FXML Button btnStart, btnExit;
@@ -23,7 +21,8 @@ public class MainMenuController {
 
             if(event.getSource() == btnStart){
                 stage = (Stage) btnStart.getScene().getWindow();
-                root = FXMLLoader.load(getClass().getResource("../views/PlayerSetupMenu.fxml"));
+                root = FXMLLoader.load(getClass().getResource("views/SelectCharacter.fxml"));
+                System.out.println("pass");
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.setTitle("GetRich");
@@ -33,7 +32,7 @@ public class MainMenuController {
             else if(event.getSource() == btnExit)
                 Platform.exit();
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Cannot find files");
             alert.setHeaderText("Oops! There is some problem");
