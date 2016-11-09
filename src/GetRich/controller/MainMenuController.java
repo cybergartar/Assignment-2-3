@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 
 public class MainMenuController {
@@ -22,6 +23,11 @@ public class MainMenuController {
             if(event.getSource() == btnStart){
                 stage = (Stage) btnStart.getScene().getWindow();
                 root = FXMLLoader.load(getClass().getResource("../views/SelectCharacter.fxml"));
+
+                AudioClip sStart = new AudioClip(this.getClass().getResource("../assets/sounds/start.mp3").toExternalForm());
+                sStart.play();
+                while (sStart.isPlaying());
+
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.setTitle("GetRich");

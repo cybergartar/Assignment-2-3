@@ -42,28 +42,20 @@ public class Gameplay {
         return roundLimit;
     }
 
-    public void setRoundLimit(int roundLimit) {
-        this.roundLimit = roundLimit;
-    }
-
     public ArrayList<Player> getPlayers() {
         return players;
-    }
-
-    public void setPlayers(ArrayList<Player> players) {
-        this.players = players;
     }
 
     public ArrayList<Player> getRank() {
         return rank;
     }
 
-    public void setRank(ArrayList<Player> rank) {
-        this.rank = rank;
-    }
-
     public ArrayList<Area> getTile() {
         return tile;
+    }
+
+    public void setRank(ArrayList<Player> rank) {
+        this.rank = rank;
     }
 
     public void setTile(ArrayList<Area> tile) {

@@ -10,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -48,6 +49,10 @@ public class SelectCharacterController {
             String textNameP3 = nameP3.getText();
             String textNameP4 = nameP4.getText();
             ArrayList<Player> players = Initializer.createPlayer(textNameP1, textNameP2, textNameP3, textNameP4);
+
+            AudioClip sLetsGo = new AudioClip(this.getClass().getResource("../assets/sounds/letsgo.mp3").toExternalForm());
+            sLetsGo.play();
+            while (sLetsGo.isPlaying());
 
             try {
                 Stage stage = (Stage) btnGo.getScene().getWindow();

@@ -35,10 +35,6 @@ public class Main extends Application {
         return pStage;
     }
 
-    private void setpStage(Stage stage) {
-        Main.pStage = stage;
-    }
-
     public static void main(String[] args) {
         launch(args);
     }

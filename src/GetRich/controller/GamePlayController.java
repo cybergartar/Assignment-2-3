@@ -14,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -27,16 +28,29 @@ import java.util.List;
 public class GamePlayController {
     Gameplay gameplay;
     @FXML ImageView dice1, dice2, avtP1, avtP2, avtP3, avtP4, starL1, starL2, starL3, starBeach, landMark;
-    @FXML Label mP1, aP1, rP1, mP2, aP2, rP2, mP3, aP3, rP3, mP4, aP4, rP4;
+    @FXML Label mP1, aP1, rP1, mP2, aP2, rP2, mP3, aP3, rP3, mP4, aP4, rP4, nameP1Label, nameP2Label, nameP3Label, nameP4Label;
     @FXML GridPane mapGrid;
     @FXML List<Pane> tileList;
     @FXML Label roundLabel, turnLabel, tossLabel;
     @FXML List<ImageView> avatar;
     @FXML List<GridPane> starList;
 
+    AudioClip sMainTheme = new AudioClip(this.getClass().getResource("../assets/sounds/maintheme.mp3").toExternalForm());
+
     int playerIndex = 0;
 
     public void handleTossButton() {
+
+        if(!(sMainTheme.isPlaying())){
+            sMainTheme.setVolume(0.5);
+            sMainTheme.play();
+        }
+
+        AudioClip sDice = new AudioClip(this.getClass().getResource("../assets/sounds/dice.mp3").toExternalForm());
+        sDice.play();
+
+        while (sDice.isPlaying());
+
         int[] tossResult = tossDice();
         Player player = gameplay.getPlayers().get(playerIndex);
         Area tile;
@@ -49,10 +63,13 @@ public class GamePlayController {
         setLabel(tossLabel, Integer.toString(tossResult[0] + tossResult[1]));
 
         int sumToss = tossResult[0] + tossResult[1];
-//        Media sound = new Media(new File("src/GetRich/assets/sounds/" + sumToss + ".mp3").toURI().toString());
-//        MediaPlayer mp = new MediaPlayer(sound);
-//        mp.play();
+
+
         move(gameplay.getPlayers().get(playerIndex), tossResult[0] + tossResult[1]);
+
+        AudioClip toss = new AudioClip(this.getClass().getResource("../assets/sounds/" + sumToss + ".mp3").toExternalForm());
+        toss.play();
+        while (toss.isPlaying()) ;
 
         tile = gameplay.getTile().get(player.getCurrentTile());
         Pane thisTile = tileList.get(tile.getIndex());
@@ -133,6 +150,10 @@ public class GamePlayController {
                 LuckyController controller = loader.getController();
                 controller.initializer(dialog, player, (Lucky) tile);
 
+                AudioClip sWowCard = new AudioClip(this.getClass().getResource("../assets/sounds/wowcard.mp3").toExternalForm());
+                sWowCard.play();
+                while (sWowCard.isPlaying());
+
                 dialog.initStyle(StageStyle.UNDECORATED);
                 dialog.initModality(Modality.WINDOW_MODAL);
                 dialog.initOwner(currentStage);
@@ -148,12 +169,16 @@ public class GamePlayController {
 
         updateAllPlayersData();
 
+        if (player.getMoney() <= 0)
+            player.setBankrupt(true);
+
         if (player.isBankrupt()) {
             gameplay.decreasePlayerNum();
             Pane thisPlayerTile;
             for (Land i : player.getLand()) {
                 updateTileData(i, -1);
             }
+            player.bankrupt();
 
             thisPlayerTile = tileList.get(player.getCurrentTile());
             ObservableList<Node> thisTileChild = thisPlayerTile.getChildren();
@@ -169,9 +194,7 @@ public class GamePlayController {
                 }
             }
 
-
         }
-
         playerIndex ++;
         if(playerIndex == 4) {
             playerIndex = 0;
@@ -196,6 +219,14 @@ public class GamePlayController {
         if (gameplay.getPlayerLeft() == 1 || gameplay.getRoundPlay() == gameplay.getRoundLimit()) {
             WinGameController.endGame(gameplay.getRank());
         }
+        else {
+            AudioClip sMyTurn = new AudioClip(this.getClass().getResource("../assets/sounds/myturn.mp3").toExternalForm());
+            sMyTurn.play();
+
+            while (sMyTurn.isPlaying());
+        }
+
+
     }
 
     public void move (Player player, int walkPoint) {
@@ -264,23 +295,24 @@ public class GamePlayController {
 
 
         for (Player i : players) {
-            Label tempM = null, tempA = null, tempR = null;
+            Label tempM = null, tempA = null, tempR = null, tempName = null;
             if (i.getIndex() == 0) {
-                tempM = mP1;    tempA = aP1;    tempR = rP1;
+                tempM = mP1;    tempA = aP1;    tempR = rP1;    tempName = nameP1Label;
             }
             if (i.getIndex() == 1) {
-                tempM = mP2;    tempA = aP2;    tempR = rP2;
+                tempM = mP2;    tempA = aP2;    tempR = rP2;    tempName = nameP2Label;
             }
             if (i.getIndex() == 2) {
-                tempM = mP3;    tempA = aP3;    tempR = rP3;
+                tempM = mP3;    tempA = aP3;    tempR = rP3;    tempName = nameP3Label;
             }
             if (i.getIndex() == 3) {
-                tempM = mP4;    tempA = aP4;    tempR = rP4;
+                tempM = mP4;    tempA = aP4;    tempR = rP4;    tempName = nameP4Label;
             }
 
             setLabel(tempM, "M: " + convertPriceToString(i.getMoney()));
             setLabel(tempA, "A: " + convertPriceToString(i.getTotalAssets()));
             setLabel(tempR, Long.toString(i.getRank()));
+            setLabel(tempName, i.getName());
         }
 
         for (Area i : gameplay.getTile()) {
@@ -301,6 +333,11 @@ public class GamePlayController {
         inStartPane.remove(starL3);
         inStartPane.remove(starBeach);
         inStartPane.remove(landMark);
+
+        if(!(sMainTheme.isPlaying())){
+            sMainTheme.setVolume(0.5);
+            sMainTheme.play();
+        }
 
     }
 
@@ -360,6 +397,8 @@ public class GamePlayController {
 
         Collections.sort(rank, new RankComparator());
 
+        gameplay.setRank(rank);
+
         for (Player i : rank) {
             Label tempM = null, tempA = null, tempR = null;
             if (i.getIndex() == 0) {
@@ -411,6 +450,8 @@ public class GamePlayController {
 
         newStarBeach = cloneImageView(false, "umbrella");
 
+        AudioClip sLandMark = new AudioClip(this.getClass().getResource("../assets/sounds/landmark.mp3").toExternalForm());
+
         int[] sequenceArray = new int[]{1, 2, 3};
 
 
@@ -427,6 +468,7 @@ public class GamePlayController {
                 }
 
                 if(tile.getLevel() == 4) {
+
                     ArrayList<Node> remove = new ArrayList<>();
                     for (Node i : thisStarTileChild) {
                         if(i instanceof ImageView && thisStarTile.getColumnIndex(i) >= 1 && thisStarTile.getColumnIndex(i) <= 3 && thisStarTile.getRowIndex(i) == 4)
@@ -435,6 +477,9 @@ public class GamePlayController {
                     for (Node i : remove) {
                         thisStarTileChild.remove(i);
                     }
+
+                    sLandMark.play();
+                    while (sLandMark.isPlaying());
                     newLandMark = cloneImageView(true, "landmark");
                     thisStarTile.add(newLandMark, 1, 4, 3, 1);
                 }
@@ -461,6 +506,8 @@ public class GamePlayController {
                     for (Node i : remove) {
                         thisStarTileChild.remove(i);
                     }
+                    sLandMark.play();
+                    while (sLandMark.isPlaying());
                     newLandMark = cloneImageView(true, "landmark_left");
                     thisStarTile.add(newLandMark, 0, 1, 1, 3);
 
@@ -488,6 +535,8 @@ public class GamePlayController {
                     for (Node i : remove) {
                         thisStarTileChild.remove(i);
                     }
+                    sLandMark.play();
+                    while (sLandMark.isPlaying());
                     newLandMark = cloneImageView(true, "landmark");
                     thisStarTile.add(newLandMark, 1, 0, 3, 1);
                 }
@@ -514,6 +563,8 @@ public class GamePlayController {
                     for (Node i : remove) {
                         thisStarTileChild.remove(i);
                     }
+                    sLandMark.play();
+                    while (sLandMark.isPlaying());
                     newLandMark = cloneImageView(true, "landmark_right");
                     thisStarTile.add(newLandMark, 4, 1, 1, 3);
                 }
