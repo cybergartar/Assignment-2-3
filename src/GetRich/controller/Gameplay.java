@@ -5,7 +5,6 @@ import GetRich.models.Player;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 public class Gameplay {
     private int roundPlay, roundLimit;
@@ -24,6 +23,7 @@ public class Gameplay {
         for (Player i : players) {
             i.setRank(i.getOrder());
         }
+        this.roundPlay = 1;
     }
 
     public static void main(String[] argv){
@@ -96,12 +96,12 @@ public class Gameplay {
     }
 }
 
-class RankComparator implements Comparator<Player> {
-    @Override
-    public int compare(Player o1, Player o2) {
-        if(o1.getTotalAssets() > o2.getTotalAssets())
-            return -1;
-        else
-            return 1;
-    }
-}
+//class RankComparator implements Comparator<Player> {
+//    @Override
+//    public int compare(Player o1, Player o2) {
+//        if(o1.getTotalAssets() > o2.getTotalAssets())
+//            return -1;
+//        else
+//            return 1;
+//    }
+//}

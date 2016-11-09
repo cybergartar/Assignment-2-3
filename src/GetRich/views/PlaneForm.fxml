@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -9,11 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GetRich.controller.DealBeachController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GetRich.controller.PlaneController">
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <Label text="Beach" BorderPane.alignment="CENTER">
+            <Label text="Plane" BorderPane.alignment="CENTER">
                <font>
                   <Font size="26.0" />
                </font>
@@ -25,7 +26,7 @@
          <bottom>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="btnBuy" mnemonicParsing="false" onAction="#buttonHandler" text="Buy">
+                  <Button fx:id="btnGo" mnemonicParsing="false" onAction="#buttonHandler" text="Let's Go!">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -40,31 +41,20 @@
          </bottom>
          <center>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
-               <children>
-                  <HBox alignment="CENTER" spacing="20.0">
-                     <children>
-                        <Label>
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </HBox>
-                  <Label fx:id="priceLabel" layoutX="216.0" layoutY="180.0" text="Price: x,xxx">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-               </children>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
+               <children>
+                  <Label text="Select where you want to go~">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="ownedList" prefWidth="150.0" />
+               </children>
             </VBox>
          </center>
       </BorderPane>

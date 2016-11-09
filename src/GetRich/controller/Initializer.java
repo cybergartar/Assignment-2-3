@@ -10,7 +10,7 @@ public class Initializer {
         int index = 0;
 
         for (String i : name) {
-            players.add(new Player(i, 5000000, index));
+            players.add(new Player(i, 50000, index));
             index ++;
         }
 
@@ -40,7 +40,7 @@ public class Initializer {
         }
 
         for (Integer i : beachList){
-            tile.add(new Beach("BBBBB", i, 74500, 80000));
+            tile.add(new Beach("BBBBB", i, 7450, 8000));
         }
 
         tile.add(new Island());

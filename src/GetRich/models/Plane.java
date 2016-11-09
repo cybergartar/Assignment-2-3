@@ -7,9 +7,8 @@ public class Plane extends Area{
         this.setType("Plane");
     }
 
-    @Override
-    public void trigger(Player player) {
+    public void trigger(Player player, int goTo) {
         super.trigger(player);
-        player.setOnPlane(true);
+        player.setPlanePoint(goTo);
     }
 }

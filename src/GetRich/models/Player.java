@@ -7,7 +7,7 @@ public class Player {
     private String name;
     private Color color;
     private long money, totalAssets;
-    private ArrayList<Land> land = new ArrayList<>();
+    private ArrayList<Land> land;
     private int lapPassed, rank;
     private boolean bankrupt = false, ready = false;
     private int order;
@@ -15,12 +15,22 @@ public class Player {
     private int turnLeftOnIsland;
     private boolean onPlane = false;
     private int index;
+    private int planePoint;
 
     public Player(String name, long money, int index){
         this.name = name;
         this.money = money;
         this.totalAssets = money;
         this.index = index;
+        this.land = new ArrayList<>();
+    }
+
+    public int getPlanePoint() {
+        return planePoint;
+    }
+
+    public void setPlanePoint(int planePoint) {
+        this.planePoint = planePoint;
     }
 
     public int getIndex() {
@@ -147,23 +157,19 @@ public class Player {
 
     public void bankrupt(){
         for(Land i : this.getLand()){
-            removeLand(i);
+            i.clearLand();
         }
+
+        this.land.clear();
+        this.setMoney(0);
+        this.setTotalAssets(0);
         this.setBankrupt(true);
     }
 
     public void removeLand(Land i){
+        land.remove(i);
         i.removeOwner();
-        i.setLevel(-1);
-        if(i instanceof Beach){
-            System.out.println("REMOVE BEACH LVL: " + i.getLevel());
-        }
-        i.setBuyPrice(Variable.calculatedLandPrice(i.getIndex(), 0));
-        i.setBaseCharge(0);
-        i.setRealCharge(0);
-        i.setPurchasable(true);
-        if(!(i instanceof Beach))
-            i.setLandmarkStatus(false);
     }
+
 }
 

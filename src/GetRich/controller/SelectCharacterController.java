@@ -62,11 +62,11 @@ public class SelectCharacterController {
                 stage.show();
 
             } catch (Exception e) {
-//                Alert alert = new Alert(Alert.AlertType.ERROR);
-//                alert.setTitle("Cannot find files");
-//                alert.setHeaderText("Oops! There is some problem");
-//                alert.setContentText("There is an error occurred. Please try again.");
-//                alert.showAndWait();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Cannot find files");
+                alert.setHeaderText("Oops! There is some problem");
+                alert.setContentText("There is an error occurred. Please try again.");
+                alert.showAndWait();
                 e.printStackTrace();
             }
         }

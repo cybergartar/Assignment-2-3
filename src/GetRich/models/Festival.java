@@ -1,7 +1,5 @@
 package GetRich.models;
 
-import java.util.Scanner;
-
 public class Festival extends Area{
     private Land currenFestival = null;
     public Festival() {
@@ -22,19 +20,20 @@ public class Festival extends Area{
 //        target.setOnFestival(true);
 //    }
 
-    @Override
-    public void trigger(Player player) {
+    public void trigger(Player player, int selected) {
         super.trigger(player);
-        Scanner input = new Scanner(System.in);
-        int cmd = input.nextInt();
-        for (Land i : player.getLand()){
-            if(i.getIndex() == cmd) {
-                if(currenFestival != null)
-                    currenFestival.setOnFestival(false);
-                i.setOnFestival(true);
-                currenFestival = i;
-                break;
-            }
+        if(currenFestival != null)
+            currenFestival.setOnFestival(false);
+
+        System.out.println(player.getLand().size());
+
+        for (Land i : player.getLand()) {
+            System.out.println(i.getName());
         }
+        System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+
+        player.getLand().get(selected).setOnFestival(true);
+        currenFestival = player.getLand().get(selected);
+
     }
 }

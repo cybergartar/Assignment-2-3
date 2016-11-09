@@ -37,7 +37,7 @@ public class Variable {
             };
 
     public static long calculatedLandPrice(int index, int level) {
-        return ((long) landPrice[index][level]) * 1000;
+        return ((long) landPrice[index][level]) * 100;
     }
     public static final double chargeMultipiler = 1.2;
 
