@@ -2,6 +2,8 @@ package GetRich.controller;
 
 import GetRich.Main;
 import GetRich.models.Player;
+import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,6 +14,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -23,6 +27,8 @@ public class WinGameController {
     @FXML static Label nameR1Label, nameR2Label, nameR3Label, nameR4Label;
 
     public static void endGame (ArrayList<Player> ranks) {
+        System.out.printf(ranks.size() + "");
+
         nameR1Label.setText(ranks.get(0).getName());
         nameR2Label.setText(ranks.get(1).getName());
         nameR3Label.setText(ranks.get(2).getName());
@@ -45,8 +51,8 @@ public class WinGameController {
         }
 
     }
-    public void buttonHandler () {
-
+    public void buttonHandler (ActionEvent event) {
+        Platform.exit();
     }
 
 }

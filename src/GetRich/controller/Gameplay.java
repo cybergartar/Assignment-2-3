@@ -9,7 +9,6 @@ import java.util.Collections;
 public class Gameplay {
     private int roundPlay, roundLimit;
     private ArrayList <Player> players;
-    private RankComparator comparator = new RankComparator();
     private ArrayList <Player> rank;
     private ArrayList <GetRich.models.Area> tile;
     private int playerLeft;

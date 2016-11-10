@@ -10,7 +10,7 @@ public class Initializer {
         int index = 0;
 
         for (String i : name) {
-            players.add(new Player(i, 50000, index));
+            players.add(new Player(i, 100000, index));
             index ++;
         }
 

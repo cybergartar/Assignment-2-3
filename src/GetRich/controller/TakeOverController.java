@@ -2,10 +2,12 @@ package GetRich.controller;
 
 import GetRich.models.Land;
 import GetRich.models.Player;
+import javafx.beans.binding.StringBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 
 public class TakeOverController {
@@ -35,6 +37,15 @@ public class TakeOverController {
         if (event.getSource() == btnBuy) {
             System.out.println("LEVEL TAKE: " + land.getLevel());
             land.takeOver(player);
+
+            String[] sTake = new String[]{"../assets/sounds/donttakemytile.mp3", "../assets/sounds/thankyoubaby.mp3"};
+            int rand = (int)(Math.random() * 10);
+
+            AudioClip sTakePlay = new AudioClip(this.getClass().getResource(sTake[(rand < 5) ? 0 : 1]).toExternalForm());
+            sTakePlay.play();
+
+            while (sTakePlay.isPlaying());
+
         }
         dialog.close();
     }
