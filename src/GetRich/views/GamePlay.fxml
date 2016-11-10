@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--<?import java.util.ArrayList ?>-->
-
 <?import java.util.ArrayList ?>
 
 <?import javafx.geometry.Insets?>
@@ -98,12 +97,12 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <Label fx:id="mP3" text="1,000,000">
+                        <Label fx:id="mP3" text="BANK">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="aP3" text="1,000,000">
+                        <Label fx:id="aP3" text="RUPT">
                            <font>
                               <Font size="16.0" />
                            </font>

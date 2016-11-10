@@ -1,15 +1,13 @@
 package GetRich.models;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class Player {
     private String name;
-    private Color color;
     private long money, totalAssets;
     private ArrayList<Land> land;
     private int lapPassed, rank;
-    private boolean bankrupt = false, ready = false;
+    private boolean bankrupt = false;
     private int order;
     private int currentTile;
     private int turnLeftOnIsland;
@@ -37,24 +35,8 @@ public class Player {
         return index;
     }
 
-    public void setIndex(int index) {
-        this.index = index;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
     }
 
     public long getMoney() {
@@ -105,20 +87,12 @@ public class Player {
         this.bankrupt = bankrupt;
     }
 
-    public boolean isReady() {
-        return ready;
-    }
-
     public int getOrder() {
         return order;
     }
 
     public void setOrder(int order) {
         this.order = order;
-    }
-
-    public void setReady(boolean ready) {
-        this.ready = ready;
     }
 
     public int getCurrentTile() {

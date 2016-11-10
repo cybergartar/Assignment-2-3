@@ -1,5 +1,7 @@
-package GetRich.controller;
+package GetRich.models;
 
+import GetRich.controller.Initializer;
+import GetRich.controller.OrderComparator;
 import GetRich.models.Area;
 import GetRich.models.Player;
 

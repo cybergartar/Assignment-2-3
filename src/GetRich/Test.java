@@ -1,6 +1,6 @@
 package GetRich;
 
-import GetRich.controller.Gameplay;
+import GetRich.models.Gameplay;
 import GetRich.models.Beach;
 import GetRich.models.Land;
 import GetRich.models.Player;

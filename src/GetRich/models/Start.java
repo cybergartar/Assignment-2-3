@@ -12,17 +12,4 @@ public class Start extends Area {
         this.setType("Start");
     }
 
-    @Override
-    public void trigger(Player player) {
-        super.trigger(player);
-        Scanner input = new Scanner(System.in);
-        int cmd = input.nextInt();
-        for (Land i : player.getLand()){
-            if(i.getIndex() == cmd) {
-                i.trigger(player);
-                break;
-            }
-        }
-
-    }
 }

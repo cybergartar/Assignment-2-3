@@ -415,8 +415,8 @@ public class GamePlayController {
             }
 
             setLabel(tempR, Integer.toString(rankNum));
-            setLabel(tempM, "M: " + convertPriceToString(i.getMoney()));
-            setLabel(tempA, "A: " + convertPriceToString(i.getTotalAssets()));
+            setLabel(tempM, (i.isBankrupt()) ? ("BANK") : "M: " + convertPriceToString(i.getMoney()));
+            setLabel(tempA, (i.isBankrupt()) ? ("RUPT") : "A: " + convertPriceToString(i.getTotalAssets()));
             rankNum ++;
         }
     }
