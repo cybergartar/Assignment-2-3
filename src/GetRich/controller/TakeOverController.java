@@ -35,7 +35,6 @@ public class TakeOverController {
 
     public void buttonHandler (ActionEvent event) {
         if (event.getSource() == btnBuy) {
-            System.out.println("LEVEL TAKE: " + land.getLevel());
             land.takeOver(player);
 
             String[] sTake = new String[]{"../assets/sounds/donttakemytile.mp3", "../assets/sounds/thankyoubaby.mp3"};

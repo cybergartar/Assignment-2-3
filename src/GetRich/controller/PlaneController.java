@@ -13,9 +13,6 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-/**
- * Created by ultimate on 11/9/16.
- */
 public class PlaneController {
     @FXML Button btnGo, btnCancel;
     @FXML ChoiceBox<String> ownedList = new ChoiceBox<String>();
@@ -39,7 +36,6 @@ public class PlaneController {
                 selectedIndex = newValue.intValue();
             }
         });
-        System.out.println("PLANEEEE");
 
     }
 

@@ -15,11 +15,8 @@ import java.io.IOException;
 
 public class LandController {
     public static void onPlayerStepped (Stage pStage, Player player, Land land, String landName) {
-        if (land.getOwner() == null)
-            System.out.println("BITCHHHHHHHHhhh");
         if(land.getOwner() != null && land.getOwner() != player) {
             land.payCharge(player);
-            System.out.println("55555555555555");
             if (player.getMoney() >= land.getBuyPrice() && land.isPurchasable()){
                 try {
                     Stage dialog = new Stage();

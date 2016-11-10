@@ -9,9 +9,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-/**
- * Created by ultimate on 11/9/16.
- */
 public class LuckyController {
     @FXML Button btnClose;
     @FXML ImageView cardImage;

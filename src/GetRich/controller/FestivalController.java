@@ -11,9 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 
-/**
- * Created by ultimate on 11/9/16.
- */
 public class FestivalController {
     @FXML Button btnFest, btnCancel;
     @FXML ChoiceBox<String> ownedList = new ChoiceBox<String>();
@@ -37,17 +34,11 @@ public class FestivalController {
                 selectedIndex = newValue.intValue();
             }
         });
-        System.out.println("FESTTTT");
 
     }
 
     public void buttonHandler (ActionEvent event) {
         if (event.getSource() == btnFest) {
-            for (Land i : thisPlayer.getLand()) {
-                System.out.println("FESTTTTTTTT: " + i.getName());
-            }
-
-            System.out.println("SELECTED: " + selectedIndex + thisPlayer.getLand().get(selectedIndex).getName());
             thisFest.trigger(thisPlayer, selectedIndex);
         }
         thisDialog.close();

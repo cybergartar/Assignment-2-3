@@ -23,7 +23,6 @@ public class Initializer {
         for(int i = 1; i < 32; i++){
            tile.add(new Land(Character.toString((char)(i+64)), i, Variable.calculatedLandPrice(i, 0), Variable.calculatedLandPrice(i, 0)));
         }
-        System.out.println("SDSDSDSD: " + tile.size());
 
         List<Integer> removeList = Arrays.asList(4, 5, 8, 11, 14, 16, 18, 20, 24, 28, 29);
         List<Integer> luckyList = Arrays.asList(5, 11, 20, 29);

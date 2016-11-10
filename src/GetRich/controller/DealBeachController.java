@@ -8,9 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-/**
- * Created by ultimate on 11/8/16.
- */
 public class DealBeachController {
     @FXML Label priceLabel;
     @FXML Button btnBuy, btnCancel;
@@ -30,7 +27,6 @@ public class DealBeachController {
 
     public void buttonHandler (ActionEvent event) {
         if (event.getSource() == btnBuy) {
-            System.out.println("LEVEL TAKE: " + land.getLevel());
             land.purchase(player, 4);
         }
         dialog.close();

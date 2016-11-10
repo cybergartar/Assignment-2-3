@@ -12,9 +12,6 @@ import javafx.stage.Stage;
 
 import static GetRich.controller.GamePlayController.convertPriceToString;
 
-/**
- * Created by ultimate on 11/8/16.
- */
 public class DealHouseController {
     @FXML Label landNameLabel, sumPriceLabel, priceLandLabel, priceL1Label, priceL2Label, priceL3Label, priceLMLabel, moneyLeftLabel;
     @FXML Button btnBuy, btnCancel;
@@ -110,7 +107,6 @@ public class DealHouseController {
             }
             else {
                 int level = ((int) radioGroup.getSelectedToggle().getUserData());
-                System.out.println("LEVEL RADIO: " + level);
                 land.purchase(player, level);
                 dialog.close();
             }

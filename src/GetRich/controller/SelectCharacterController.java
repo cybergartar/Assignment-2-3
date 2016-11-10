@@ -15,9 +15,6 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-/**
- * Created by ultimate on 11/6/16.
- */
 public class SelectCharacterController {
     int readyPerson = 0;
     @FXML ToggleButton btnReadyP1, btnReadyP2, btnReadyP3, btnReadyP4;
@@ -81,12 +78,10 @@ public class SelectCharacterController {
         if (btn.isSelected()) {
             btn.setText("Unready");
             readyPerson ++;
-            System.out.println(readyPerson);
         }
         else {
             btn.setText("Ready");
             readyPerson --;
-            System.out.println(readyPerson);
         }
     }
 

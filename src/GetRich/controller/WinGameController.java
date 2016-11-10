@@ -19,9 +19,6 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- * Created by ultimate on 11/9/16.
- */
 public class WinGameController {
     @FXML Button btnExit;
     @FXML static Label nameR1Label, nameR2Label, nameR3Label, nameR4Label;

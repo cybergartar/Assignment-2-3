@@ -243,7 +243,6 @@ public class GamePlayController {
         toTile = tileList.get(walkAmount);
         player.setCurrentTile(walkAmount);
 
-        System.out.println("PLAYERINDEX: " + player.getIndex() + " NOW AT: " + player.getCurrentTile() + " TO: " + walkAmount);
         ObservableList<Node> thisTileChild = thisTile.getChildren();
         ObservableList<Node> toTileChild = toTile.getChildren();
 
@@ -315,10 +314,6 @@ public class GamePlayController {
             setLabel(tempName, i.getName());
         }
 
-        for (Area i : gameplay.getTile()) {
-            System.out.println("INDEX: " + i.getIndex() + " TYPE: " + i.getType());
-        }
-
         for (int i = 0; i < tileList.size(); i++) {
             updatePriceTag(i);
         }
@@ -359,7 +354,6 @@ public class GamePlayController {
         int y = (int)(Math.random()*6)+1;
 
         return new int[]{x, y};
-//        return new int[]{4, 4};
     }
 
     public void updatePriceTag (int i) {

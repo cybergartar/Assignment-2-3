@@ -28,12 +28,7 @@ public class Lucky extends Area{
             case 15: player.recvMoney(10000); break;
             case 16: player.recvMoney(500); break;
 
-            //TODO : BANKRUPTTTTTTTT
         }
     }
-
-
-
-//    TODO: think more lucky method
 
 }
