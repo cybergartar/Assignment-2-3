@@ -23,7 +23,7 @@ public class LuckyController {
         thisPlayer = player;
         selectedIndex = (int)(Math.random() * 16) + 1;
 
-        cardImage.setImage(new Image(getClass().getResourceAsStream("../assets/best/Card-กล่องสมบัติ/" + selectedIndex + ".png")));
+        cardImage.setImage(new Image(getClass().getResourceAsStream("../assets/images/" + selectedIndex + ".png")));
 
     }
 
